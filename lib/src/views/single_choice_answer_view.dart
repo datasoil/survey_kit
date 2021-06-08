@@ -29,7 +29,6 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
   @override
   void initState() {
     super.initState();
-    print("init");
     _singleChoiceAnswerFormat =
         widget.questionStep.answerFormat as SingleChoiceAnswerFormat;
     _selectedChoice =
@@ -48,15 +47,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
   }
 
   @override
-  void dispose() {
-    print("dispose");
-    //_singleChoiceAnswerFormat = new SingleChoiceAnswerFormat(textChoices: textChoices)
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    print("build");
     return StepView(
       step: widget.questionStep,
       controller: SurveyController(

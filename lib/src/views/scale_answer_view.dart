@@ -20,8 +20,8 @@ class ScaleAnswerView extends StatefulWidget {
 }
 
 class _ScaleAnswerViewState extends State<ScaleAnswerView> {
-  late final DateTime _startDate;
-  late final ScaleAnswerFormat _scaleAnswerFormat;
+  late DateTime _startDate;
+  late ScaleAnswerFormat _scaleAnswerFormat;
   late double _sliderValue;
 
   @override
@@ -30,6 +30,14 @@ class _ScaleAnswerViewState extends State<ScaleAnswerView> {
     _scaleAnswerFormat = widget.questionStep.answerFormat as ScaleAnswerFormat;
     _sliderValue = widget.result?.result ?? _scaleAnswerFormat.defaultValue;
     _startDate = DateTime.now();
+  }
+
+  @override
+  void didUpdateWidget(covariant ScaleAnswerView oldWidget) {
+    _scaleAnswerFormat = widget.questionStep.answerFormat as ScaleAnswerFormat;
+    _sliderValue = widget.result?.result ?? _scaleAnswerFormat.defaultValue;
+    _startDate = DateTime.now();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
