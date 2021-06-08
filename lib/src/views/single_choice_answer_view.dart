@@ -93,6 +93,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
                         setState(() {
                           _selectedChoice = tc;
                         });
+                        _checkValidation(_selectedChoice.value);
                       },
                       isSelected: _selectedChoice == tc,
                     );
