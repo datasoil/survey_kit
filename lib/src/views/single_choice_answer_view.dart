@@ -36,14 +36,6 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
     _selectedChoice =
         widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
     _startDate = DateTime.now();
-    _checkValidation(_selectedChoice.value);
-  }
-
-  void _checkValidation(String text) {
-    setState(() {
-      _isValid =
-          widget.questionStep.isOptional || _selectedChoice.value.isNotEmpty;
-    });
   }
 
   @override
@@ -60,7 +52,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
           result: _selectedChoice,
         ),
       ),
-      isValid: _isValid,
+      isValid: _selectedChoice != null || widget.questionStep.isOptional,
       title: Text(
         widget.questionStep.title,
         style: Theme.of(context).textTheme.headline5,
@@ -93,7 +85,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
                         setState(() {
                           _selectedChoice = tc;
                         });
-                        _checkValidation(_selectedChoice.value);
+                        print(_selectedChoice);
                       },
                       isSelected: _selectedChoice == tc,
                     );
