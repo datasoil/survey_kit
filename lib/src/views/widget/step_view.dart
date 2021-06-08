@@ -52,22 +52,6 @@ class StepView extends StatelessWidget {
               },
             )
           : Container(),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextButton(
-            child: Text(
-              'Cancel',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            onPressed: () {
-              controller.closeSurvey();
-            },
-          ),
-        ),
-      ],
     );
   }
 
@@ -82,17 +66,6 @@ class StepView extends StatelessWidget {
               },
             )
           : Container(),
-      trailing: GestureDetector(
-        child: Text(
-          'Cancel',
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
-        onTap: () {
-          controller.closeSurvey();
-        },
-      ),
     );
   }
 

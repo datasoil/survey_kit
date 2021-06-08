@@ -22,8 +22,8 @@ class SingleChoiceAnswerView extends StatefulWidget {
 }
 
 class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
-  late final DateTime _startDate;
-  late final SingleChoiceAnswerFormat _singleChoiceAnswerFormat;
+  late DateTime _startDate;
+  late SingleChoiceAnswerFormat _singleChoiceAnswerFormat;
   TextChoice? _selectedChoice;
 
   @override
@@ -34,6 +34,16 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
     _selectedChoice =
         widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
     _startDate = DateTime.now();
+  }
+
+  @override
+  void didUpdateWidget(covariant SingleChoiceAnswerView oldWidget) {
+    _singleChoiceAnswerFormat =
+        widget.questionStep.answerFormat as SingleChoiceAnswerFormat;
+    _selectedChoice =
+        widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
+    _startDate = DateTime.now();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -50,6 +60,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
           result: _selectedChoice,
         ),
       ),
+      isValid: _selectedChoice != null || widget.questionStep.isOptional,
       title: Text(
         widget.questionStep.title,
         style: Theme.of(context).textTheme.headline5,
@@ -82,6 +93,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
                         setState(() {
                           _selectedChoice = tc;
                         });
+                        print(_selectedChoice);
                       },
                       isSelected: _selectedChoice == tc,
                     );

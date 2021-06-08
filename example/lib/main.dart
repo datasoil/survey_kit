@@ -138,9 +138,21 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         QuestionStep(
+          title: 'Select your body type',
+          answerFormat: ScaleAnswerFormat(
+            step: 1,
+            minimumValue: 3,
+            maximumValue: 15,
+            defaultValue: 10,
+            minimumValueDescription: '3',
+            maximumValueDescription: '15',
+          ),
+        ),
+        QuestionStep(
           title: 'Known allergies',
           text: 'Do you have any allergies that we should be aware of?',
-          answerFormat: MultipleChoiceAnswerFormat(
+          isOptional: true,
+          answerFormat: SingleChoiceAnswerFormat(
             textChoices: [
               TextChoice(text: 'Penicillin', value: 'Penicillin'),
               TextChoice(text: 'Latex', value: 'Latex'),
@@ -150,8 +162,21 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         QuestionStep(
+          title: 'blablabla',
+          text: 'asdadsas',
+          isOptional: false,
+          answerFormat: SingleChoiceAnswerFormat(
+            textChoices: [
+              TextChoice(text: 'sss', value: 'sadsad'),
+              TextChoice(text: 'sss', value: 'asdsa'),
+              TextChoice(text: 'aaaaa', value: 'assda'),
+            ],
+          ),
+        ),
+        QuestionStep(
           title: 'Done?',
           text: 'We are done, do you mind to tell us more about yourself?',
+          isOptional: true,
           answerFormat: SingleChoiceAnswerFormat(
             textChoices: [
               TextChoice(text: 'Yes', value: 'Yes'),
