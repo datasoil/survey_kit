@@ -22,15 +22,14 @@ class SingleChoiceAnswerView extends StatefulWidget {
 }
 
 class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
-  late final DateTime _startDate;
-  late final SingleChoiceAnswerFormat _singleChoiceAnswerFormat;
+  late DateTime _startDate;
+  late SingleChoiceAnswerFormat _singleChoiceAnswerFormat;
   TextChoice? _selectedChoice;
-
-  bool _isValid = false;
 
   @override
   void initState() {
     super.initState();
+    print("init");
     _singleChoiceAnswerFormat =
         widget.questionStep.answerFormat as SingleChoiceAnswerFormat;
     _selectedChoice =
@@ -39,7 +38,25 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
   }
 
   @override
+  void didUpdateWidget(covariant SingleChoiceAnswerView oldWidget) {
+    _singleChoiceAnswerFormat =
+        widget.questionStep.answerFormat as SingleChoiceAnswerFormat;
+    _selectedChoice =
+        widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
+    _startDate = DateTime.now();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    print("dispose");
+    //_singleChoiceAnswerFormat = new SingleChoiceAnswerFormat(textChoices: textChoices)
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("build");
     return StepView(
       step: widget.questionStep,
       controller: SurveyController(
@@ -79,6 +96,9 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
                 ),
                 ..._singleChoiceAnswerFormat.textChoices.map(
                   (TextChoice tc) {
+                    print("Numero opzioni:" +
+                        _singleChoiceAnswerFormat.textChoices.length
+                            .toString());
                     return SelectionListTile(
                       text: tc.text,
                       onTap: () {

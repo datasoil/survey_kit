@@ -56,6 +56,7 @@ class QuestionStep extends Step {
           result: questionResult as TextQuestionResult?,
         );
       case SingleChoiceAnswerFormat:
+        print("new single");
         return SingleChoiceAnswerView(
           questionStep: this,
           result: questionResult as SingleChoiceQuestionResult?,

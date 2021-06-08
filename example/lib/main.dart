@@ -140,7 +140,8 @@ class _MyAppState extends State<MyApp> {
         QuestionStep(
           title: 'Known allergies',
           text: 'Do you have any allergies that we should be aware of?',
-          answerFormat: MultipleChoiceAnswerFormat(
+          isOptional: true,
+          answerFormat: SingleChoiceAnswerFormat(
             textChoices: [
               TextChoice(text: 'Penicillin', value: 'Penicillin'),
               TextChoice(text: 'Latex', value: 'Latex'),
@@ -150,8 +151,21 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         QuestionStep(
+          title: 'blablabla',
+          text: 'asdadsas',
+          isOptional: false,
+          answerFormat: SingleChoiceAnswerFormat(
+            textChoices: [
+              TextChoice(text: 'sss', value: 'sadsad'),
+              TextChoice(text: 'sss', value: 'asdsa'),
+              TextChoice(text: 'aaaaa', value: 'assda'),
+            ],
+          ),
+        ),
+        QuestionStep(
           title: 'Done?',
           text: 'We are done, do you mind to tell us more about yourself?',
+          isOptional: true,
           answerFormat: SingleChoiceAnswerFormat(
             textChoices: [
               TextChoice(text: 'Yes', value: 'Yes'),
