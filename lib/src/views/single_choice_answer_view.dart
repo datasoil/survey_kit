@@ -26,6 +26,8 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
   late final SingleChoiceAnswerFormat _singleChoiceAnswerFormat;
   TextChoice? _selectedChoice;
 
+  bool _isValid = false;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +36,14 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
     _selectedChoice =
         widget.result?.result ?? _singleChoiceAnswerFormat.defaultSelection;
     _startDate = DateTime.now();
+    _checkValidation(_selectedChoice.value);
+  }
+
+  void _checkValidation(String text) {
+    setState(() {
+      _isValid =
+          widget.questionStep.isOptional || _selectedChoice.value.isNotEmpty;
+    });
   }
 
   @override
@@ -50,6 +60,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
           result: _selectedChoice,
         ),
       ),
+      isValid: _isValid,
       title: Text(
         widget.questionStep.title,
         style: Theme.of(context).textTheme.headline5,
