@@ -138,6 +138,17 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         QuestionStep(
+          title: 'Select your body type',
+          answerFormat: ScaleAnswerFormat(
+            step: 1,
+            minimumValue: 3,
+            maximumValue: 15,
+            defaultValue: 10,
+            minimumValueDescription: '3',
+            maximumValueDescription: '15',
+          ),
+        ),
+        QuestionStep(
           title: 'Known allergies',
           text: 'Do you have any allergies that we should be aware of?',
           isOptional: true,
