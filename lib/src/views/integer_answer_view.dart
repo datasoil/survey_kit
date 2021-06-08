@@ -46,7 +46,8 @@ class _IntegerAnswerViewState extends State<IntegerAnswerView> {
 
   void _checkValidation(String text) {
     setState(() {
-      _isValid = text.isNotEmpty && int.tryParse(text) != null;
+      _isValid = widget.questionStep.isOptional ||
+          (text.isNotEmpty && int.tryParse(text) != null);
     });
   }
 
