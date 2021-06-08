@@ -87,9 +87,6 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
                 ),
                 ..._singleChoiceAnswerFormat.textChoices.map(
                   (TextChoice tc) {
-                    print("Numero opzioni:" +
-                        _singleChoiceAnswerFormat.textChoices.length
-                            .toString());
                     return SelectionListTile(
                       text: tc.text,
                       onTap: () {
