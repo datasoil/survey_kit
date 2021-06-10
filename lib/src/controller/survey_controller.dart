@@ -35,6 +35,5 @@ class SurveyController {
         resultFunction.call(),
       ),
     );
-    Navigator.pop(context);
   }
 }
