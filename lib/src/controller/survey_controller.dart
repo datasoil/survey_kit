@@ -30,6 +30,7 @@ class SurveyController {
   }
 
   void closeSurvey() {
+  print("close survey");
     BlocProvider.of<SurveyPresenter>(context).add(
       CloseSurvey(
         resultFunction.call(),
