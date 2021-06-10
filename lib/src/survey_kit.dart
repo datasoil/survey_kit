@@ -63,12 +63,7 @@ class _SurveyKitState extends State<SurveyKit> {
               );
             }
             if (state is SurveyResultState) {
-              widget.onResult.call(state.result);
-              SchedulerBinding.instance?.addPostFrameCallback(
-                (_) {
-                  Navigator.pop(context);
-                },
-              );
+              widget.onResult(state.result);
             }
             return Center(
               child: CircularProgressIndicator(),
