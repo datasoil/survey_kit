@@ -129,7 +129,7 @@ class _DateAnswerViewState extends State<DateAnswerView> {
   Widget _iosDatePicker(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.width > 350 ? 400.0 : 250.0,
+      height: MediaQuery.of(context).size.width > 350 ? 400.0 : 210.0,
       child: CupertinoDatePicker(
         mode: CupertinoDatePickerMode.date,
         minimumDate: _dateAnswerFormat.minDate,
