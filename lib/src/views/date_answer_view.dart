@@ -73,7 +73,7 @@ class _DateAnswerViewState extends State<DateAnswerView> {
               textAlign: TextAlign.center,
             ),
           ),
-          Platform.isAndroid ? _androidDatePicker() : _iosDatePicker(),
+          Platform.isAndroid ? _androidDatePicker() : _iosDatePicker(context),
         ],
       ),
     );
