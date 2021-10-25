@@ -7,7 +7,7 @@ import 'package:survey_kit/src/answer_format/time_answer_formart.dart';
 import 'package:survey_kit/src/controller/survey_controller.dart';
 import 'package:survey_kit/src/result/question/time_question_result.dart';
 import 'package:survey_kit/src/steps/predefined_steps/question_step.dart';
-import 'package:survey_kit/src/views/widget/time_picker.dart';
+import 'package:survey_kit/src/views/widget/time_picker.dart' as TP;
 import 'package:survey_kit/src/views/widget/step_view.dart';
 
 class TimeAnswerView extends StatefulWidget {
@@ -81,7 +81,7 @@ class _TimeAnswerViewState extends State<TimeAnswerView> {
     return Container(
       width: double.infinity,
       height: 450.0,
-      child: TimePickerDialog(
+      child: TP.TimePickerDialog(
         initialTime: _result ??
             TimeOfDay.fromDateTime(
               DateTime.now(),
