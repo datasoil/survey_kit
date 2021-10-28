@@ -57,14 +57,13 @@ class _DateAnswerViewState extends State<DateAnswerView> {
       ),
       title: Text(
         widget.questionStep.title,
-        style: TextStyle(
-          fontSize: 28.0,
-        ),
+        style: Theme.of(context).textTheme.headline5,
+        textAlign: TextAlign.center,
       ),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 32.0),
+            padding: const EdgeInsets.only(bottom: 0),
             child: Text(
               widget.questionStep.text,
               style: TextStyle(

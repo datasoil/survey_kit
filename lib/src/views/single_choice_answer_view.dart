@@ -71,7 +71,7 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 0),
               child: Text(
                 widget.questionStep.text,
                 style: TextStyle(
