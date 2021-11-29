@@ -37,6 +37,7 @@ class _BooleanAnswerViewState extends State<BooleanAnswerView> {
   Widget build(BuildContext context) {
     return StepView(
       step: widget.questionStep,
+      canCancel: widget.questionStep.canCancel,
       controller: SurveyController(
         context: context,
         resultFunction: () => BooleanQuestionResult(

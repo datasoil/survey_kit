@@ -15,11 +15,13 @@ import 'package:survey_kit/src/task/task.dart';
 class SurveyKit extends StatefulWidget {
   final Task task;
   final ThemeData? themeData;
+  final bool entrySurvey;
   final Function(SurveyResult) onResult;
 
   const SurveyKit({
     required this.task,
     required this.onResult,
+    this.entrySurvey = false,
     this.themeData,
   });
 
@@ -64,6 +66,12 @@ class _SurveyKitState extends State<SurveyKit> {
             }
             if (state is SurveyResultState) {
               widget.onResult(state.result);
+              if (!widget.entrySurvey)
+                SchedulerBinding.instance?.addPostFrameCallback(
+                  (_) {
+                    Navigator.pop(context);
+                  },
+                );
             }
             return Center(
               child: CircularProgressIndicator(),

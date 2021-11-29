@@ -15,6 +15,7 @@ class CompletionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return StepView(
       step: completionStep,
+      canCancel: completionStep.canCancel,
       controller: SurveyController(
         context: context,
         resultFunction: () => CompletionStepResult(

@@ -45,6 +45,7 @@ class _DateAnswerViewState extends State<DateAnswerView> {
   Widget build(BuildContext context) {
     return StepView(
       step: widget.questionStep,
+      canCancel: widget.questionStep.canCancel,
       controller: SurveyController(
         context: context,
         resultFunction: () => DateQuestionResult(

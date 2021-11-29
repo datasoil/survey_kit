@@ -7,9 +7,11 @@ import 'package:survey_kit/src/views/completion_view.dart';
 class CompletionStep extends Step {
   final String title;
   final String text;
+  final bool canCancel;
 
   CompletionStep({
     bool isOptional = false,
+    this.canCancel = true,
     required StepIdentifier id,
     String buttonText = 'End Survey',
     required this.title,

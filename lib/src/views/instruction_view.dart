@@ -14,6 +14,7 @@ class InstructionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return StepView(
       canBack: false,
+      canCancel: instructionStep.canCancel,
       step: instructionStep,
       title: Text(
         instructionStep.title,

@@ -32,11 +32,13 @@ class QuestionStep extends Step {
   final String title;
   final String text;
   final AnswerFormat answerFormat;
+  final bool canCancel;
 
   QuestionStep({
     bool isOptional = false,
     String buttonText = 'Next',
     StepIdentifier? id,
+    this.canCancel = true,
     this.title = '',
     this.text = '',
     required this.answerFormat,

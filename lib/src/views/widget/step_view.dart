@@ -11,6 +11,7 @@ class StepView extends StatelessWidget {
   final Widget child;
   final SurveyController controller;
   final bool canBack;
+  final bool canCancel;
   final bool isValid;
 
   const StepView({
@@ -20,6 +21,7 @@ class StepView extends StatelessWidget {
     required this.controller,
     this.isValid = true,
     this.canBack = true,
+    this.canCancel = true,
   });
 
   @override
@@ -41,28 +43,62 @@ class StepView extends StatelessWidget {
 
   AppBar _androidAppBar(BuildContext context) {
     return AppBar(
-      elevation: 0.0,
+      elevation: 0.5,
+      backgroundColor: Colors.white,
       leading: canBack
           ? IconButton(
               icon: Icon(
                 Icons.arrow_back,
+                color: Theme.of(context).primaryColor,
               ),
               onPressed: () {
                 controller.stepBack();
               },
             )
           : Container(),
+      actions: [
+        canCancel
+            ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  child: Text(
+                    'Annulla',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  onPressed: () {
+                    controller.closeSurvey();
+                  },
+                ),
+              )
+            : Container(),
+      ],
     );
   }
 
   CupertinoNavigationBar _iosAppBar(BuildContext context) {
     return CupertinoNavigationBar(
+      backgroundColor: Colors.white,
       leading: canBack
           ? CupertinoNavigationBarBackButton(
               color: Theme.of(context).primaryColor,
               previousPageTitle: 'Back',
               onPressed: () {
                 controller.stepBack();
+              },
+            )
+          : Container(),
+      trailing: canCancel
+          ? GestureDetector(
+              child: Text(
+                'Annulla',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              onTap: () {
+                controller.closeSurvey();
               },
             )
           : Container(),

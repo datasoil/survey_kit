@@ -55,6 +55,7 @@ class _IntegerAnswerViewState extends State<IntegerAnswerView> {
   Widget build(BuildContext context) {
     return StepView(
       step: widget.questionStep,
+      canCancel: widget.questionStep.canCancel,
       controller: SurveyController(
         context: context,
         resultFunction: () => IntegerQuestionResult(

@@ -41,6 +41,7 @@ class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
   Widget build(BuildContext context) {
     return StepView(
       step: widget.questionStep,
+      canCancel: widget.questionStep.canCancel,
       controller: SurveyController(
         context: context,
         resultFunction: () => MultipleChoiceQuestionResult(

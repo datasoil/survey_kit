@@ -7,11 +7,13 @@ import 'package:survey_kit/src/views/instruction_view.dart';
 class InstructionStep extends Step {
   final String title;
   final String text;
+  final bool canCancel;
 
   InstructionStep({
     bool isOptional = false,
     String buttonText = 'Next',
     StepIdentifier? id,
+    this.canCancel = true,
     required this.title,
     required this.text,
   }) : super(id: id, isOptional: isOptional, buttonText: buttonText);
