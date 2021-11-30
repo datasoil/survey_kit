@@ -1,3 +1,4 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -65,13 +66,19 @@ class _SurveyKitState extends State<SurveyKit> {
               );
             }
             if (state is SurveyResultState) {
-              widget.onResult(state.result);
-              if (!widget.entrySurvey)
+              if (!widget.entrySurvey) {
                 SchedulerBinding.instance?.addPostFrameCallback(
                   (_) {
                     Navigator.pop(context);
+                    EasyDebounce.debounce(
+                        'debouncer1', Duration(milliseconds: 500), () {
+                      widget.onResult(state.result);
+                    });
                   },
                 );
+              } else {
+                widget.onResult(state.result);
+              }
             }
             return Center(
               child: CircularProgressIndicator(),
