@@ -22,19 +22,29 @@ class MultipleChoiceAnswerView extends StatefulWidget {
 }
 
 class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
-  late final DateTime _startDateTime;
-  late final MultipleChoiceAnswerFormat _multipleChoiceAnswer;
+  late DateTime _startDateTime;
+  late MultipleChoiceAnswerFormat _multipleChoiceAnswerFormat;
 
   List<TextChoice> _selectedChoices = [];
 
   @override
   void initState() {
     super.initState();
-    _multipleChoiceAnswer =
+    _multipleChoiceAnswerFormat =
         widget.questionStep.answerFormat as MultipleChoiceAnswerFormat;
     _selectedChoices =
-        widget.result?.result ?? _multipleChoiceAnswer.defaultSelection;
+        widget.result?.result ?? _multipleChoiceAnswerFormat.defaultSelection;
     _startDateTime = DateTime.now();
+  }
+
+  @override
+  void didUpdateWidget(covariant MultipleChoiceAnswerView oldWidget) {
+    _multipleChoiceAnswerFormat =
+        widget.questionStep.answerFormat as MultipleChoiceAnswerFormat;
+    _selectedChoices =
+        widget.result?.result ?? _multipleChoiceAnswerFormat.defaultSelection;
+    _startDateTime = DateTime.now();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -53,6 +63,7 @@ class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
           result: _selectedChoices,
         ),
       ),
+      isValid: _selectedChoices.length > 0 || widget.questionStep.isOptional,
       title: Text(
         widget.questionStep.title,
         style: Theme.of(context).textTheme.headline5,
@@ -63,7 +74,7 @@ class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 0),
               child: Text(
                 widget.questionStep.text,
                 style: TextStyle(
@@ -77,7 +88,7 @@ class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
                 Divider(
                   color: Colors.grey,
                 ),
-                ..._multipleChoiceAnswer.textChoices
+                ..._multipleChoiceAnswerFormat.textChoices
                     .map(
                       (TextChoice tc) => SelectionListTile(
                         text: tc.text,
