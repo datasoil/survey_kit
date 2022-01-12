@@ -67,43 +67,49 @@ class _SingleChoiceAnswerViewState extends State<SingleChoiceAnswerView> {
         style: Theme.of(context).textTheme.headline5,
         textAlign: TextAlign.center,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: Text(
-                widget.questionStep.text,
-                style: TextStyle(
-                  fontSize: 18.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Column(
-              children: [
-                Divider(
-                  color: Colors.grey,
-                ),
-                ..._singleChoiceAnswerFormat.textChoices.map(
-                  (TextChoice tc) {
-                    return SelectionListTile(
-                      text: tc.text,
-                      onTap: () {
-                        setState(() {
-                          _selectedChoice = tc;
-                        });
-                      },
-                      isSelected: _selectedChoice == tc,
-                    );
-                  },
-                ).toList(),
-              ],
-            ),
-          ],
+      child: Column(children: [
+        Text(
+          "Scegli una risposta",
+          textAlign: TextAlign.center,
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 0),
+                child: Text(
+                  widget.questionStep.text,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Column(
+                children: [
+                  Divider(
+                    color: Colors.grey,
+                  ),
+                  ..._singleChoiceAnswerFormat.textChoices.map(
+                    (TextChoice tc) {
+                      return SelectionListTile(
+                        text: tc.text,
+                        onTap: () {
+                          setState(() {
+                            _selectedChoice = tc;
+                          });
+                        },
+                        isSelected: _selectedChoice == tc,
+                      );
+                    },
+                  ).toList(),
+                ],
+              ),
+            ],
+          ),
+        )
+      ]),
     );
   }
 }

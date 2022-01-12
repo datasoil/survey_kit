@@ -65,14 +65,14 @@ class _NumberAnswerViewState extends State<NumberAnswerView> {
       _isValid = text.isNotEmpty &&
           (_isDouble
               ? double.tryParse(text) != null
-              : int.tryParse(text) != null);
+              : int.tryParse(text) != null) &&
+          double.parse(text) >= _integerAnswerFormat.min! &&
+          double.parse(text) <= _integerAnswerFormat.max!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("DOUBLE: " + (_integerAnswerFormat.step is double).toString());
-    print("INT: " + (_integerAnswerFormat.step is int).toString());
     return StepView(
       step: widget.questionStep,
       canCancel: widget.questionStep.canCancel,
@@ -88,35 +88,43 @@ class _NumberAnswerViewState extends State<NumberAnswerView> {
               null,
         ),
       ),
-      isValid: widget.questionStep.isOptional || _isValid,
+      isValid: (widget.questionStep.isOptional && _controller.text == '') ||
+          _isValid,
       title: Text(
         widget.questionStep.title,
         style: Theme.of(context).textTheme.headline5,
         textAlign: TextAlign.center,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 32.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          child: TextField(
-            controller: _controller,
-            onChanged: (String value) {
-              _checkValidation(value);
-            },
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              _isDouble
-                  ? FilteringTextInputFormatter.allow(
-                      RegExp(r'([0-9]+([.][0-9]*)?|[.][0-9]+)'))
-                  : FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            ],
-            textAlign: TextAlign.center,
-            decoration: textFieldInputDecoration(
-              hint: _integerAnswerFormat.hint,
-            ),
-          ),
-        ),
-      ),
+      child: Column(children: [
+        Text(
+            'Valore compreso tra ' +
+                _integerAnswerFormat.min!.toString() +
+                " e " +
+                _integerAnswerFormat.max!.toString(),
+            textAlign: TextAlign.center),
+        Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: TextField(
+                controller: _controller,
+                onChanged: (String value) {
+                  _checkValidation(value);
+                },
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  _isDouble
+                      ? FilteringTextInputFormatter.allow(
+                          RegExp(r'([0-9]+([.][0-9]*)?|[.][0-9]+)'))
+                      : FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                ],
+                textAlign: TextAlign.center,
+                decoration: textFieldInputDecoration(
+                  hint: _integerAnswerFormat.hint,
+                ),
+              ),
+            )),
+      ]),
     );
   }
 }

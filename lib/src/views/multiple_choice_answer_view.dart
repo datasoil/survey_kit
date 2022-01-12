@@ -69,49 +69,55 @@ class _MultipleChoiceAnswerView extends State<MultipleChoiceAnswerView> {
         style: Theme.of(context).textTheme.headline5,
         textAlign: TextAlign.center,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: Text(
-                widget.questionStep.text,
-                style: TextStyle(
-                  fontSize: 18.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Column(
-              children: [
-                Divider(
-                  color: Colors.grey,
-                ),
-                ..._multipleChoiceAnswerFormat.textChoices
-                    .map(
-                      (TextChoice tc) => SelectionListTile(
-                        text: tc.text,
-                        onTap: () {
-                          setState(
-                            () {
-                              if (_selectedChoices.contains(tc)) {
-                                _selectedChoices.remove(tc);
-                              } else {
-                                _selectedChoices = [..._selectedChoices, tc];
-                              }
-                            },
-                          );
-                        },
-                        isSelected: _selectedChoices.contains(tc),
-                      ),
-                    )
-                    .toList(),
-              ],
-            ),
-          ],
+      child: Column(children: [
+        Text(
+          "Scegli una o più risposte",
+          textAlign: TextAlign.center,
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 0),
+                child: Text(
+                  widget.questionStep.text,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Column(
+                children: [
+                  Divider(
+                    color: Colors.grey,
+                  ),
+                  ..._multipleChoiceAnswerFormat.textChoices
+                      .map(
+                        (TextChoice tc) => SelectionListTile(
+                          text: tc.text,
+                          onTap: () {
+                            setState(
+                              () {
+                                if (_selectedChoices.contains(tc)) {
+                                  _selectedChoices.remove(tc);
+                                } else {
+                                  _selectedChoices = [..._selectedChoices, tc];
+                                }
+                              },
+                            );
+                          },
+                          isSelected: _selectedChoices.contains(tc),
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
+            ],
+          ),
+        )
+      ]),
     );
   }
 }
