@@ -6,6 +6,7 @@ import 'package:survey_kit/src/views/decoration/input_decoration.dart';
 import 'package:survey_kit/src/result/question/text_question_result.dart';
 import 'package:survey_kit/src/steps/predefined_steps/question_step.dart';
 import 'package:survey_kit/src/views/widget/step_view.dart';
+import 'package:uuid/uuid.dart';
 
 class TextAnswerView extends StatefulWidget {
   final QuestionStep questionStep;
@@ -21,8 +22,8 @@ class TextAnswerView extends StatefulWidget {
 }
 
 class _TextAnswerViewState extends State<TextAnswerView> {
-  late final TextAnswerFormat _textAnswerFormat;
-  late final DateTime _startDate;
+  late TextAnswerFormat _textAnswerFormat;
+  late DateTime _startDate;
 
   late final TextEditingController _controller;
   bool _isValid = false;
@@ -35,6 +36,17 @@ class _TextAnswerViewState extends State<TextAnswerView> {
     _checkValidation(_controller.text);
     _textAnswerFormat = widget.questionStep.answerFormat as TextAnswerFormat;
     _startDate = DateTime.now();
+  }
+
+  @override
+  void didUpdateWidget(covariant TextAnswerView oldWidget) {
+    if (oldWidget.questionStep.id.id != widget.questionStep.id.id) {
+      _controller.text = widget.result?.result ?? '';
+      _checkValidation(_controller.text);
+      _textAnswerFormat = widget.questionStep.answerFormat as TextAnswerFormat;
+      _startDate = DateTime.now();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   void _checkValidation(String text) {
@@ -69,7 +81,7 @@ class _TextAnswerViewState extends State<TextAnswerView> {
         style: Theme.of(context).textTheme.headline5,
         textAlign: TextAlign.center,
       ),
-      isValid: _isValid,
+      isValid: _isValid || widget.questionStep.isOptional,
       child: Column(
         children: [
           Padding(
