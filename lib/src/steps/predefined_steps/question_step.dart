@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:survey_kit/src/answer_format/answer_format.dart';
 import 'package:survey_kit/src/answer_format/boolean_answer_format.dart';
 import 'package:survey_kit/src/answer_format/date_answer_format.dart';
-import 'package:survey_kit/src/answer_format/integer_answer_format.dart';
+import 'package:survey_kit/src/answer_format/number_answer_format.dart';
 import 'package:survey_kit/src/answer_format/multiple_choice_answer_format.dart';
 import 'package:survey_kit/src/answer_format/scale_answer_format.dart';
 import 'package:survey_kit/src/answer_format/single_choice_answer_format.dart';
@@ -10,7 +10,7 @@ import 'package:survey_kit/src/answer_format/text_answer_format.dart';
 import 'package:survey_kit/src/answer_format/time_answer_formart.dart';
 import 'package:survey_kit/src/result/question/boolean_question_result.dart';
 import 'package:survey_kit/src/result/question/date_question_result.dart';
-import 'package:survey_kit/src/result/question/integer_question_result.dart';
+import 'package:survey_kit/src/result/question/number_question_result.dart';
 import 'package:survey_kit/src/result/question/multiple_choice_question_result.dart';
 import 'package:survey_kit/src/result/question/scale_question_result.dart';
 import 'package:survey_kit/src/result/question/single_choice_question_result.dart';
@@ -18,7 +18,7 @@ import 'package:survey_kit/src/result/question/text_question_result.dart';
 import 'package:survey_kit/src/result/question/time_question_result.dart';
 import 'package:survey_kit/src/views/boolean_answer_view.dart';
 import 'package:survey_kit/src/views/date_answer_view.dart';
-import 'package:survey_kit/src/views/integer_answer_view.dart';
+import 'package:survey_kit/src/views/number_answer_view.dart';
 import 'package:survey_kit/src/views/multiple_choice_answer_view.dart';
 import 'package:survey_kit/src/views/scale_answer_view.dart';
 import 'package:survey_kit/src/views/single_choice_answer_view.dart';
@@ -47,10 +47,10 @@ class QuestionStep extends Step {
   @override
   Widget createView({required QuestionResult? questionResult}) {
     switch (answerFormat.runtimeType) {
-      case IntegerAnswerFormat:
-        return IntegerAnswerView(
+      case NumberAnswerFormat:
+        return NumberAnswerView(
           questionStep: this,
-          result: questionResult as IntegerQuestionResult?,
+          result: questionResult as NumberQuestionResult?,
         );
       case TextAnswerFormat:
         return TextAnswerView(

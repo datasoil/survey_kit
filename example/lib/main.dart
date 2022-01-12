@@ -103,13 +103,6 @@ class _MyAppState extends State<MyApp> {
           buttonText: 'Let\'s go!',
         ),
         QuestionStep(
-          title: 'How old are you?',
-          answerFormat: IntegerAnswerFormat(
-            defaultValue: 25,
-            hint: 'Please enter your age',
-          ),
-        ),
-        QuestionStep(
           title: 'Medication?',
           text: 'Are you using any medication',
           answerFormat: BooleanAnswerFormat(
