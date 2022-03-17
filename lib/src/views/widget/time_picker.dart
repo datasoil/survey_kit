@@ -69,7 +69,7 @@ class _TimePickerFragmentContext {
     required this.onHourDoubleTapped,
     required this.onMinuteDoubleTapped,
     required this.use24HourDials,
-  })   : assert(selectedTime != null),
+  })  : assert(selectedTime != null),
         assert(mode != null),
         assert(onTimeChange != null),
         assert(onModeChange != null),
@@ -95,7 +95,7 @@ class _TimePickerHeader extends StatelessWidget {
     required this.onMinuteDoubleTapped,
     required this.use24HourDials,
     required this.helpText,
-  })   : assert(selectedTime != null),
+  })  : assert(selectedTime != null),
         assert(mode != null),
         assert(orientation != null),
         assert(use24HourDials != null);
@@ -258,7 +258,7 @@ class _HourMinuteControl extends StatelessWidget {
     required this.onTap,
     required this.onDoubleTap,
     required this.isSelected,
-  })   : assert(text != null),
+  })  : assert(text != null),
         assert(onTap != null),
         assert(isSelected != null);
 
@@ -956,7 +956,7 @@ class _Dial extends StatefulWidget {
     required this.use24HourDials,
     required this.onChanged,
     required this.onHourSelected,
-  })   : assert(selectedTime != null),
+  })  : assert(selectedTime != null),
         assert(mode != null),
         assert(use24HourDials != null);
 
@@ -982,7 +982,7 @@ class _DialState extends State<_Dial> with SingleTickerProviderStateMixin {
     _theta = _thetaController
         .drive(CurveTween(curve: standardEasing))
         .drive(_thetaTween)
-          ..addListener(() => setState(() {/* _theta.value has changed */}));
+      ..addListener(() => setState(() {/* _theta.value has changed */}));
   }
 
   late ThemeData themeData;
@@ -1358,7 +1358,7 @@ class _TimePickerInput extends StatefulWidget {
     required this.autofocusHour,
     required this.autofocusMinute,
     required this.onChanged,
-  })   : assert(initialSelectedTime != null),
+  })  : assert(initialSelectedTime != null),
         assert(onChanged != null),
         super(key: key);
 
@@ -1874,7 +1874,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
     super.initState();
     _selectedTime = widget.initialTime;
     _entryMode = widget.initialEntryMode;
-    _autoValidate = false;
+    _autoValidate = AutovalidateMode.disabled;
   }
 
   @override
@@ -1888,7 +1888,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
   late TimePickerEntryMode _entryMode;
   _TimePickerMode _mode = _TimePickerMode.hour;
   _TimePickerMode? _lastModeAnnounced;
-  late bool _autoValidate;
+  late AutovalidateMode _autoValidate;
   bool? _autofocusHour;
   bool? _autofocusMinute;
 
@@ -1928,7 +1928,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
     setState(() {
       switch (_entryMode) {
         case TimePickerEntryMode.dial:
-          _autoValidate = false;
+          _autoValidate = AutovalidateMode.disabled;
           _entryMode = TimePickerEntryMode.input;
           break;
         case TimePickerEntryMode.input:
@@ -2010,7 +2010,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
       final FormState form = _formKey.currentState!;
       if (!form.validate()) {
         setState(() {
-          _autoValidate = true;
+          _autoValidate = AutovalidateMode.always;
         });
         return;
       }
@@ -2182,7 +2182,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
       case TimePickerEntryMode.input:
         picker = Form(
           key: _formKey,
-          autovalidate: _autoValidate,
+          autovalidateMode: _autoValidate,
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
